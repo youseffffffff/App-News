@@ -1,4 +1,4 @@
-import 'package:app_news/features/home/models/top_headlines_api_response.dart';
+import 'package:app_news/core/models/news_api_response.dart';
 import 'package:app_news/features/home/models/top_headlines_body.dart';
 import 'package:app_news/features/home/services/home_services.dart';
 import 'package:bloc/bloc.dart';

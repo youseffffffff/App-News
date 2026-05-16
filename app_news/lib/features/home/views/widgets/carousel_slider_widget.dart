@@ -1,8 +1,9 @@
 import 'dart:collection';
 
 import 'package:app_news/core/utils/app_colors.dart';
+import 'package:app_news/core/utils/route/app_routes.dart';
 import 'package:app_news/features/home/cubit/home_cubit.dart';
-import 'package:app_news/features/home/models/top_headlines_api_response.dart';
+import 'package:app_news/core/models/news_api_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_options.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarouselSliderWidget extends StatefulWidget {
-  CarouselSliderWidget({super.key});
+  const CarouselSliderWidget({super.key});
 
   @override
   State<CarouselSliderWidget> createState() => _CarouselSliderWidgetState();
@@ -47,7 +48,14 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
 
         final List<Widget> imageSliders = imgList
             .map(
-              (item) => Container(
+              (item) => InkWell(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutes.articleDetails,
+                    arguments: item,
+                  );
+                },
                 child: Container(
                   margin: EdgeInsets.all(5.0),
                   child: ClipRRect(
@@ -94,7 +102,16 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      item.source?.name ?? '',
+                                      item.source?.name == null
+                                          ? ''
+                                          : item.source!.name!.substring(
+                                              0,
+                                              item.source!.name!.length > 15
+                                                  ? 15
+                                                  : item.source!.name!.length,
+                                            ),
+                                      overflow: TextOverflow.ellipsis,
+
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16.0,

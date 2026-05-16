@@ -15,28 +15,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-
-
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        key: _scaffoldKey,
+      key: _scaffoldKey,
 
       drawer: DrawerWidget(),
       appBar: AppBar(
-        
-
-
-        leading: AppBarWidget(
-          icon: Icons.menu,
-          onTap: () {
-
-            _scaffoldKey.currentState?.openDrawer();
-          },
-          hasPaddingBetween: true,
-
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: AppBarWidget(
+            icon: Icons.menu,
+            onTap: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
+            hasPaddingBetween: false,
+          ),
         ),
 
         actions: [
