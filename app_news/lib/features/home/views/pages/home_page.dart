@@ -1,3 +1,4 @@
+import 'package:app_news/core/utils/route/app_routes.dart';
 import 'package:app_news/core/views/widgets/app_bar_widget.dart';
 import 'package:app_news/features/home/views/widgets/carousel_slider_widget.dart';
 import 'package:app_news/core/views/widgets/drawer_widget.dart';
@@ -37,7 +38,10 @@ class _HomePageState extends State<HomePage> {
         actions: [
           AppBarWidget(
             icon: Icons.search,
-            onTap: () {},
+            onTap: () {
+              // Navigate to SearchPage
+              Navigator.pushNamed(context, AppRoutes.search);
+            },
             hasPaddingBetween: true,
           ),
           const SizedBox(width: 8.0),

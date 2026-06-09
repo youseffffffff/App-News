@@ -39,6 +39,18 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("androidx.appcompat:appcompat:1.7.0")
+        force("androidx.annotation:annotation:1.8.0")
+        force("androidx.annotation:annotation-experimental:1.4.1")
+    }
+}
+
+dependencies {
+    implementation("androidx.appcompat:appcompat:1.7.0")
+}
+
 flutter {
     source = "../.."
 }

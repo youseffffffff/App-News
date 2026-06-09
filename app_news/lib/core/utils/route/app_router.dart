@@ -3,6 +3,8 @@ import 'package:app_news/features/home/cubit/home_cubit.dart';
 import 'package:app_news/core/models/news_api_response.dart';
 import 'package:app_news/features/home/views/pages/article_details.dart';
 import 'package:app_news/features/home/views/pages/home_page.dart';
+import 'package:app_news/features/search/cubit/search_cubit.dart';
+import 'package:app_news/features/search/views/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,9 +26,18 @@ class AppRouter {
         );
 
       case AppRoutes.articleDetails:
-      final article = settings.arguments as Article;
+        final article = settings.arguments as Article;
         return MaterialPageRoute(
           builder: (_) => ArticleDetails(article: article),
+          settings: settings,
+        );
+
+      case AppRoutes.search:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => SearchCubit(),
+            child: SearchPage(),
+          ),
           settings: settings,
         );
 

@@ -34,7 +34,7 @@ class ArticleDetails extends StatelessWidget {
                 height: size.height * 0.5,
                 fit: BoxFit.cover,
                 placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
+                    Center(child: CircularProgressIndicator.adaptive()),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
               Container(
@@ -188,7 +188,7 @@ class ArticleDetails extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
                     Text(
-                      '${article.description ?? 'No Description Available'}\n${article.content ?? 'No Description Available'}',
+                      '${article.description ?? 'No Description Available'}',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),

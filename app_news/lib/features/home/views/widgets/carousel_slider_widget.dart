@@ -67,7 +67,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                               item.urlToImage ??
                               'https://th.bing.com/th/id/OIP.amm3ZIOTM2TuVcP-wu96gwHaHa?w=154&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3',
                           placeholder: (context, url) =>
-                              Center(child: CircularProgressIndicator()),
+                              Center(child: CircularProgressIndicator.adaptive()),
                           errorWidget: (context, url, error) =>
                               Icon(Icons.error),
                           fit: BoxFit.cover,

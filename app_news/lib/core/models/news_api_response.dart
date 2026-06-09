@@ -1,3 +1,5 @@
+import 'package:app_news/features/search/models/search_body.dart';
+
 class NewsApiResponse {
   final String status;
   final int totalResults;
@@ -28,6 +30,8 @@ class NewsApiResponse {
           : null,
     };
   }
+
+  static Future<Object?> fetchArticlesByQuery(SearchBody searchBody) async {}
 }
 
 class Article {
