@@ -1,8 +1,11 @@
 import 'package:app_news/core/utils/app_colors.dart';
+import 'package:app_news/core/utils/route/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  final dynamic cubit; // Replace 'dynamic' with the actual type of your cubit
+
+  const DrawerWidget({super.key, required this.cubit});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,7 @@ class DrawerWidget extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
+              Navigator.pop(context); // Close the drawer
               // Handle navigation to Home
             },
             leading: Icon(Icons.home),
@@ -29,11 +33,14 @@ class DrawerWidget extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              // Handle navigation to Profile
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushNamed(context, AppRoutes.favorite).then((_) async {
+                await cubit.fetchRecommendations(); // Refresh recommendations when returning
+              }); // Navigate to Favorites
             },
-            leading: Icon(Icons.settings),
+            leading: Icon(Icons.favorite),
             title: Text(
-              'Settings',
+              'Favorites',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),

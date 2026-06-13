@@ -1,10 +1,12 @@
 import 'package:app_news/core/utils/route/app_routes.dart';
 import 'package:app_news/core/views/widgets/app_bar_widget.dart';
+import 'package:app_news/features/home/cubit/home_cubit.dart';
 import 'package:app_news/features/home/views/widgets/carousel_slider_widget.dart';
 import 'package:app_news/core/views/widgets/drawer_widget.dart';
-import 'package:app_news/features/home/views/widgets/recommendations_widget.dart';
+import 'package:app_news/core/views/widgets/news_Items_widget.dart';
 import 'package:app_news/features/home/views/widgets/title_headlines_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,10 +21,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    final cubit = BlocProvider.of<HomeCubit>(context);
+    
     return Scaffold(
       key: _scaffoldKey,
 
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(cubit: cubit),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -56,6 +61,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -81,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
 
-              RecommendationsWidget(),
+              NewsItems(cubit: cubit),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:app_news/features/search/models/search_body.dart';
+import 'dart:convert';
 
 class NewsApiResponse {
   final String status;
@@ -43,6 +44,7 @@ class Article {
   final String? urlToImage;
   final DateTime? publishedAt;
   final String? content;
+  final bool isFavorite;
 
   const Article({
     this.source,
@@ -53,6 +55,7 @@ class Article {
     this.urlToImage,
     this.publishedAt,
     this.content,
+    required this.isFavorite,
   });
 
   factory Article.fromMap(Map<String, dynamic> map) {
@@ -67,6 +70,7 @@ class Article {
           ? DateTime.parse(map['publishedAt'])
           : null,
       content: map['content'],
+      isFavorite: false,
     );
   }
 
@@ -81,6 +85,35 @@ class Article {
       'publishedAt': publishedAt?.toIso8601String(),
       'content': content,
     };
+  }
+
+  factory Article.fromJson(String source) =>
+      Article.fromMap(jsonDecode(source));
+
+  String toJson() => jsonEncode(toMap());
+
+  Article copyWith({
+    Source? source,
+    String? author,
+    String? title,
+    String? description,
+    String? url,
+    String? urlToImage,
+    DateTime? publishedAt,
+    String? content,
+    bool? isFavorite,
+  }) {
+    return Article(
+      source: source ?? this.source,
+      author: author ?? this.author,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      url: url ?? this.url,
+      urlToImage: urlToImage ?? this.urlToImage,
+      publishedAt: publishedAt ?? this.publishedAt,
+      content: content ?? this.content,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
   }
 }
 

@@ -1,4 +1,6 @@
 import 'package:app_news/core/utils/route/app_routes.dart';
+import 'package:app_news/features/favorite/cubit/favorite_cubit.dart';
+import 'package:app_news/features/favorite/views/pages/favorite_page.dart';
 import 'package:app_news/features/home/cubit/home_cubit.dart';
 import 'package:app_news/core/models/news_api_response.dart';
 import 'package:app_news/features/home/views/pages/article_details.dart';
@@ -40,6 +42,18 @@ class AppRouter {
           ),
           settings: settings,
         );
+        //FavoritePage
+
+        case AppRoutes.favorite:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => FavoriteCubit()..fetchFavorites(),
+            child: FavoritePage(),
+          ),
+          settings: settings,
+        );
+
+
 
       default:
         return MaterialPageRoute(
